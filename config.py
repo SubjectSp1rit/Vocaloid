@@ -23,6 +23,7 @@ volume_level = 0
 microphone_switch = True
 # Блоки и карта
 
+world_pos_x = 0
 block_size = 100
 
 _ = False
