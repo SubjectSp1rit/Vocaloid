@@ -15,7 +15,8 @@ pygame.display.set_icon(pygame.image.load('img/icon.png'))
 # Параметры игрока
 player = pygame.image.load('img/amogus.png').convert()  # convert_alpha() для картинок без фона
 player_speed = 5
-player_position = [10, 460]
+player_static_position_x = 50
+player_position = [player_static_position_x, 460]
 player_is_falling = True
 
 volume_level = 0
@@ -29,14 +30,15 @@ block_size = 100
 _ = False
 collision_walls = []
 map = [
-    [_, _, _, _, 1, _, _, _, _],
-    [_, _, _, _, _, _, _, _, _],
-    [_, _, _, _, _, _, _, _, _],
-    [_, _, _, _, _, _, _, _, _],
-    [_, _, _, _, _, _, 1, _, _],
-    [1, 1, _, 1, 1, _, 1, 1, 1]
+    [_, _, _, _, 1, _, _, _, _, _],
+    [_, _, _, _, _, _, _, _, _, _],
+    [_, _, _, _, _, _, _, _, _, _],
+    [_, _, _, _, _, _, _, _, _, 1],
+    [_, _, _, _, _, _, 1, _, _, 1],
+    [1, 1, _, 1, 1, _, 1, 1, _, 1, 1, 1]
 ]
 for i, column in enumerate(map):
     for j, line in enumerate(column):
         if line:
             collision_walls.append(pygame.Rect(j * block_size, i * block_size, block_size, block_size))
+print(sorted(collision_walls))

@@ -43,6 +43,7 @@ while running:
             if player_rect.colliderect(elem):
                 next_x = 0
         player_position[0] += next_x
+        world_pos_x += next_x
 
         player_position[1] = player_position[1] - player_speed
     else:
@@ -61,34 +62,6 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]:
         exit()
-    '''elif keys[pygame.K_d]:
-        next_x = player_speed
-        player_rect[0] = player_rect[0] + next_x
-        for elem in sorted(collision_walls):
-            if player_rect.colliderect(elem):
-                next_x = 0
-        player_position[0] += next_x
-    elif keys[pygame.K_s]:
-        next_y = player_speed
-        player_rect[1] = player_rect[1] + next_y
-        for elem in sorted(collision_walls):
-            if player_rect.colliderect(elem):
-                next_y = 0
-        player_position[1] += next_y
-    elif keys[pygame.K_a]:
-        next_x = player_speed
-        player_rect[0] = player_rect[0] - next_x
-        for elem in sorted(collision_walls):
-            if player_rect.colliderect(elem):
-                next_x = 0
-        player_position[0] -= next_x
-    elif keys[pygame.K_w]:
-        next_y = player_speed
-        player_rect[1] = player_rect[1] - next_y
-        for elem in sorted(collision_walls):
-            if player_rect.colliderect(elem):
-                next_y = 0
-        player_position[1] -= next_y'''
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
@@ -99,24 +72,10 @@ while running:
                 else:
                     microphone_switch = True
 
-    '''if not player_is_on_fly:
-        if keys[pygame.K_SPACE]:
-            player_is_on_fly = True
-    else:
-        if jump_counter >= -8:
-            if jump_counter > 0:
-                player_position[1] -= (jump_counter ** 2) / 2
-            else:
-                player_position[1] += (jump_counter ** 2) / 2
-            jump_counter -= 1
-        else:
-            player_is_on_fly = False
-            jump_counter = 8'''
-
     screen.fill('white')
-    screen.blit(player, player_position)
+    screen.blit(player, (player_static_position_x, player_position[1]))
     for elem in sorted(collision_walls):
-        pygame.draw.rect(screen, ('black'), (elem[0], elem[1], elem[2], elem[3]))
+        pygame.draw.rect(screen, ('black'), (elem[0] - world_pos_x, elem[1], elem[2], elem[3]))
 
     pygame.display.flip()
     clock.tick(20)
