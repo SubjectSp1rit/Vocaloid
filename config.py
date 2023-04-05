@@ -34,11 +34,10 @@ map = [
     [_, _, _, _, _, _, _, _, _, _],
     [_, _, _, _, _, _, _, _, _, _],
     [_, _, _, _, _, _, _, _, _, 1],
-    [_, _, _, _, _, _, 1, _, _, 1],
+    [_, 1, _, _, _, _, 1, _, _, 1],
     [1, 1, _, 1, 1, _, 1, 1, _, 1, 1, 1]
 ]
 for i, column in enumerate(map):
     for j, line in enumerate(column):
         if line:
             collision_walls.append(pygame.Rect(j * block_size, i * block_size, block_size, block_size))
-print(sorted(collision_walls))
